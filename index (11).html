@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حساب العلامة النهائية</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="number"] {
+            width: 50px;
+            padding: 5px;
+            margin: 5px 0;
+        }
+        button {
+            padding: 10px 20px;
+            background: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #4cae4c;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>حساب العلامة النهائية</h2>
+        <form id="gradeForm">
+            <div>
+                <label for="part1">الجزء الأول (10 أسئلة):</label>
+                <input type="number" id="part1_correct" placeholder="عدد الإجابات الصحيحة" required>
+            </div>
+            <div>
+                <label for="part2">الجزء الثاني (22 أسئلة):</label>
+                <input type="number" id="part2_correct" placeholder="عدد الإجابات الصحيحة" required>
+            </div>
+            <div>
+                <label for="part3">الجزء الثالث (23 أسئلة):</label>
+                <input type="number" id="part3_correct" placeholder="عدد الإجابات الصحيحة" required>
+            </div>
+            <div>
+                <label for="part4">الجزء الرابع (5 أسئلة):</label>
+                <input type="number" id="part4_correct" placeholder="عدد الإجابات الصحيحة" required>
+            </div>
+            <button type="submit">احسب العلامة</button>
+        </form>
+        <div class="result" id="result"></div>
+    </div>
+    <div class="footer">
+        Created by MOHAMMAD SALEH ALTAYYEM
+    </div>
+
+    <script>
+        document.getElementById('gradeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // الحصول على قيم الإدخال
+            const part1_correct = parseFloat(document.getElementById('part1_correct').value);
+            const part1_total = 10;
+
+            const part2_correct = parseFloat(document.getElementById('part2_correct').value);
+            const part2_total = 22;
+
+            const part3_correct = parseFloat(document.getElementById('part3_correct').value);
+            const part3_total = 23;
+
+            const part4_correct = parseFloat(document.getElementById('part4_correct').value);
+            const part4_total = 5;
+
+            // حساب العلامات لكل جزء
+            const part1_score = part1_correct * (38 / part1_total);
+            const part2_score = part2_correct * (26.5 / part2_total);
+            const part3_score = part3_correct * (26.5 / part3_total);
+            const part4_score = part4_correct * (9 / part4_total);
+
+            // جمع العلامات
+            const total_score = part1_score + part2_score + part3_score + part4_score;
+
+            // عرض النتيجة
+            document.getElementById('result').textContent = `العلامة النهائية: ${total_score.toFixed(2)}`;
+        });
+    </script>
+</body>
+</html>
